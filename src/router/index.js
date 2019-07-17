@@ -10,6 +10,9 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Upload from '@/components/Upload'
 import Project from '@/components/Project'
+import Task from '@/components/Task'
+import ProjectCreate from '@/components/ProjectCreate'
+
 
 Vue.use(Router)
 Vue.use(iView)
@@ -20,7 +23,23 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      children:[,
+        {
+          path: '/project',
+          name: 'Project',
+          component: Project
+        },
+        {
+          path: '/project/create',
+          name: 'ProjectCreate',
+          component: ProjectCreate
+        },
+        {
+          path: '/task',
+          name: 'Task',
+          component: Task
+        }]
     },
     {
       path: '/animation/:id',
@@ -42,11 +61,6 @@ export default new Router({
       name: 'Upload',
       component: Upload
     }
-    ,
-    {
-      path: '/project',
-      name: 'Project',
-      component: Project
-    }
+    
   ]
 })

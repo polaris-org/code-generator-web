@@ -75,6 +75,7 @@ export default {
               var userInfo = response.data.data;
               localStorage.setItem("token", userInfo.token);
               localStorage.setItem("nickname", userInfo.nickname);
+              localStorage.setItem("userId", userInfo.id);
               app.$router.push({name:'Home'})
             }else{
               form.$Message.error(response.data.msg);

@@ -1,19 +1,19 @@
 <template>
   <div>
       <div class="menu">
-        <Menu :theme="theme3" active-name="1" mode="vertical">
-            <MenuGroup title="项目管理" @click="jumpToProjectManager()">
-                <MenuItem name="1" @click="jumpToProjectManager()">
+        <Menu :theme="theme3" active-name="1" mode="vertical" @on-select="jumpToProjectManager">
+            <MenuGroup title="项目管理" >
+                <MenuItem name="1" >
                     <Icon type="md-document" />
                     项目管理
                 </MenuItem>
-                <MenuItem name="2" @click="jumpToProjectManager()">
+                <MenuItem name="2">
                     <Icon type="md-chatbubbles" />
                     评论管理
                 </MenuItem>
             </MenuGroup>
             <MenuGroup title="统计分析">
-                <MenuItem name="3">
+                <MenuItem name="3" >
                     <Icon type="md-heart" />
                     用户留存
                 </MenuItem>
@@ -24,7 +24,6 @@
             </MenuGroup>
         </Menu>
       </div>
-      <Button type="primary" @click="jumpToProjectManager()" >Signin</Button
       <div class="list">
         <router-view class="router-view"/>
       </div>
@@ -39,9 +38,13 @@ export default {
         }
     },
     methods:{
-      jumpToProjectManager(){
-        alert(1)
-        app.$router.push({name:'Project'})
+      jumpToProjectManager(e){
+        if(e == 1){
+          app.$router.push({name:'Project'})
+        }else if(e == 2){
+          app.$router.push({name:'Task'})
+        }
+        
       }
     },
     created(){
