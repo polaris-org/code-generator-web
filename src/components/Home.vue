@@ -9,23 +9,13 @@
                 </MenuItem>
                 <MenuItem name="2">
                     <Icon type="md-chatbubbles" />
-                    评论管理
-                </MenuItem>
-            </MenuGroup>
-            <MenuGroup title="统计分析">
-                <MenuItem name="3" >
-                    <Icon type="md-heart" />
-                    用户留存
-                </MenuItem>
-                <MenuItem name="4">
-                    <Icon type="md-leaf" />
-                    流失用户
+                    模板管理
                 </MenuItem>
             </MenuGroup>
         </Menu>
       </div>
       <div class="list">
-        <router-view class="router-view"/>
+        <router-view class="router-view" style="margin:0 auto"/>
       </div>
   </div>
 </template>
@@ -42,7 +32,7 @@ export default {
         if(e == 1){
           app.$router.push({name:'Project'})
         }else if(e == 2){
-          app.$router.push({name:'Task'})
+          app.$router.push({name:'Template'})
         }
         
       }
@@ -53,6 +43,6 @@ export default {
 }
 </script>
 <style scoped>
-.menu {float:left}
-.list {float:left}
+.menu {float:left; width: 8%;}
+.list {float:left; width: 92%;}
 </style>

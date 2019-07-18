@@ -1,7 +1,10 @@
 <template>
     <div style="width:1100px;padding:10px">
         <div style="">
-            <Button type="info" style="float:right" @click="jumpToCreateProject()">创建项目</Button>
+            <!--Select v-model="formInline.projectId" filterable style="float:left">
+                <Option v-for="item in projectList" :value="item.id" :key="item.id">{{ item.name }}</Option>
+            </Select-->
+            <Button type="info" style="float:right" @click="jumpToCreateTemplate()">创建模板</Button>
         </div>
         <Table border :columns="columns" :data="data" style="float:right;margin-top:10px"></Table>
         <Page :total="total" :page-size="size" @on-page-size-change="pageSizeChange" show-sizer class="page" @on-change="pageChange" :current="1"/>
@@ -35,6 +38,14 @@
                         key: 'name'
                     },
                     {
+                        title: '后缀',
+                        key: 'suffix'
+                    },
+                    {
+                        title: '所属模板ID',
+                        key: 'projectId'
+                    },
+                    {
                         title: '创建用户ID',
                         key: 'userId'
                     }
@@ -60,7 +71,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            app.$router.push({name:'ProjectUpdate',query: { id: params.row.id }})//
+                                            app.$router.push({name:'TemplateUpdate',query: { id: params.row.id }})//
                                         }
                                     }
                                 }, '编辑'),
@@ -96,8 +107,8 @@
             remove (index) {
                 this.data.splice(index, 1);
             },
-            getProjectList(page,size){
-                axios.get(app.HOST + "/projects?page=" + page + "&size=" + size,{
+            getTemplateList(page,size){
+                axios.get(app.HOST + "/templates?page=" + page + "&size=" + size,{
                     headers:{token:localStorage.getItem("token")}
                 })
                 .then(function (response) {
@@ -117,24 +128,24 @@
                     app.$Message.error('err: ' + error);
                 });
             },
-            jumpToCreateProject(){
-                app.$router.push({name:'ProjectCreate'})
+            jumpToCreateTemplate(){
+                app.$router.push({name:'TemplateCreate'})
             },
             pageChange(e){
-                app.getProjectList(e, app.size)
+                app.getTemplateList(e, app.size)
             },
             pageSizeChange(e){
                 app.size = e
-                app.getProjectList(1, app.size)
+                app.getTemplateList(1, app.size)
             },
             delete(data){
-                axios.delete(app.HOST + "/projects/" + data.id,{
+                axios.delete(app.HOST + "/templates/" + data.id,{
                     headers:{token:localStorage.getItem("token")}
                 })
                 .then(function (response) {
                     var resp = response.data
                     if(resp.code == 200){
-                        app.$Message.success('删除项目' + data.name + '成功');
+                        app.$Message.success('删除模板' + data.name + '成功');
                     }else{
                          app.$Message.error(resp.msg);
                     }
@@ -147,7 +158,7 @@
         },
         created(){
             app = this
-            app.getProjectList(1, app.size)
+            app.getTemplateList(1, app.size)
         }
     }
 </script>

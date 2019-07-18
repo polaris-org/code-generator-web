@@ -9,7 +9,6 @@ Vue.config.productionTip = false
 // Vue.prototype.HOST = 'http://39.105.65.8:9999'
 Vue.prototype.HOST = 'http://127.0.0.1:8888'
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -34,7 +33,9 @@ service.interceptors.request.use(
   })
 
   service.interceptors.response.use(response => {
+    console.log("test")
     if (response.data && response.data.code === 511) { // 401, token失效
+      
       localStorage.removeItem("token")
       router.push({name: 'Login'})
     }

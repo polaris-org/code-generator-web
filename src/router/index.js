@@ -10,15 +10,18 @@ import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Upload from '@/components/Upload'
 import Project from '@/components/Project'
-import Task from '@/components/Task'
 import ProjectCreate from '@/components/ProjectCreate'
+import ProjectUpdate from '@/components/ProjectUpdate'
+import Template from '@/components/Template'
+import TemplateCreate from '@/components/TemplateCreate'
+import TemplateUpdate from '@/components/TemplateUpdate'
 
 
 Vue.use(Router)
 Vue.use(iView)
 Vue.use(ElementUI)
 
-export default new Router({
+var r = new Router({
   routes: [
     {
       path: '/',
@@ -36,9 +39,24 @@ export default new Router({
           component: ProjectCreate
         },
         {
-          path: '/task',
-          name: 'Task',
-          component: Task
+          path: '/project/update',
+          name: 'ProjectUpdate',
+          component: ProjectUpdate
+        },
+        {
+          path: '/template',
+          name: 'Template',
+          component: Template
+        },
+        {
+          path: '/template/create',
+          name: 'TemplateCreate',
+          component: TemplateCreate
+        },
+        {
+          path: '/template/update',
+          name: 'TemplateUpdate',
+          component: TemplateUpdate
         }]
     },
     {
@@ -64,3 +82,16 @@ export default new Router({
     
   ]
 })
+
+r.beforeEach((to, from, next) => {
+  if(localStorage.getItem("token") || to.name =="Login" || to.name == "Register"){
+    next()
+  }else{
+    next({
+      path:"/Login"
+    })
+  }
+  next();
+})
+
+export default r

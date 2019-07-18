@@ -24,6 +24,7 @@
     export default {
         data () {
             return {
+                id:0,
                 formInline: {
                     name: "",
                     desc: "",
@@ -59,13 +60,13 @@
             handleSubmit(name) {
                 this.$refs[name].validate(valid => {
                     if (valid) {
-                        axios.post(app.HOST + "/projects", app.formInline, {
+                        axios.put(app.HOST + "/projects/" + app.id, app.formInline, {
                             headers:{token:localStorage.getItem("token")}
                         })
                         .then(function (response) {
                             var resp = response.data
                             if(resp.code == 200){
-                                app.$Message.success('添加项目成功');
+                                app.$Message.success('更新项目成功');
                                 app.$router.push({name:'Project'})
                             }else{
                                app.$Message.error(resp.msg);
@@ -80,12 +81,34 @@
                     }
                 });
             },
+            GetProjectInfo(id){
+                axios.get(app.HOST + "/projects/" + id,{
+                    headers:{token:localStorage.getItem("token")}
+                })
+                .then(function (response) {
+                    var resp = response.data
+                    if(resp.code == 200){
+                        app.formInline.name = resp.data.name
+                        app.formInline.desc = resp.data.desc
+                        app.formInline.properties = resp.data.properties
+                    }else{
+                        app.$Message.error(resp.msg);
+                    }
+                })
+                .catch(function (error) {
+                    app.$Message.error('err: ' + error);
+                });
+            },
             back(){
                 this.$router.go(-1);
             }
         },
         created(){
             app = this
+
+            var id = app.$route.query.id
+            app.id = id
+            app.GetProjectInfo(id)
         }
     }
 </script>
