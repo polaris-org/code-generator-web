@@ -8,7 +8,7 @@
         </FormItem>
 
         <FormItem prop="projectId" label="绑定项目">
-            <Select v-model="formInline.projectId" filterable>
+            <Select v-model="formInline.projectId" filterable >
                 <Option v-for="item in projectList" :value="item.id" :key="item.id">{{ item.name }}</Option>
             </Select>
         </FormItem>

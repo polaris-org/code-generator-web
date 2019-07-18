@@ -1,9 +1,9 @@
 <template>
     <div style="width:1100px;padding:10px">
         <div style="">
-            <!--Select v-model="formInline.projectId" filterable style="float:left">
+            <Select v-model="projectId" filterable style="float:left;width:300px" @on-change="selectOnChange" clearable="true" >
                 <Option v-for="item in projectList" :value="item.id" :key="item.id">{{ item.name }}</Option>
-            </Select-->
+            </Select>
             <Button type="info" style="float:right" @click="jumpToCreateTemplate()">创建模板</Button>
         </div>
         <Table border :columns="columns" :data="data" style="float:right;margin-top:10px"></Table>
@@ -18,6 +18,8 @@
     export default {
         data () {
             return {
+                projectId:"",
+                projectList: [],
                 columns: [
                     {
                         title: 'ID',
@@ -108,7 +110,11 @@
                 this.data.splice(index, 1);
             },
             getTemplateList(page,size){
-                axios.get(app.HOST + "/templates?page=" + page + "&size=" + size,{
+                var projectCond = "";
+                if (app.projectId){
+                    projectCond = "&projectId=" + app.projectId;
+                }
+                axios.get(app.HOST + "/templates?page=" + page + "&size=" + size + projectCond,{
                     headers:{token:localStorage.getItem("token")}
                 })
                 .then(function (response) {
@@ -154,11 +160,37 @@
                 .catch(function (error) {
                     app.$Message.error('err: ' + error);
                 });
+            },
+            getProjectList(){
+                axios.get(app.HOST + "/projects?page=" + 1 + "&size=" + 0,{
+                    headers:{token:localStorage.getItem("token")}
+                })
+                .then(function (response) {
+                    var resp = response.data
+                    if(resp.code == 200){
+                        if(resp.data.list){
+                            app.projectList = resp.data.list
+                            // app.projectList.splice(0,0,{id:"",name:"取消选择"})
+                        }else{
+                            app.data = []
+                        }
+                    }else{
+                        app.$Message.error(resp.msg);
+                    }
+                })
+                .catch(function (error) {
+                    app.$Message.error('err: ' + error);
+                });
+            },
+            selectOnChange(e){
+                app.projectId = e
+                app.getTemplateList(1, app.size)
             }
         },
         created(){
             app = this
             app.getTemplateList(1, app.size)
+            app.getProjectList()
         }
     }
 </script>

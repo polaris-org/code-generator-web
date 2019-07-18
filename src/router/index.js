@@ -8,13 +8,13 @@ import Home from '@/components/Home'
 import Animation from '@/components/Animation'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
-import Upload from '@/components/Upload'
 import Project from '@/components/Project'
 import ProjectCreate from '@/components/ProjectCreate'
 import ProjectUpdate from '@/components/ProjectUpdate'
 import Template from '@/components/Template'
 import TemplateCreate from '@/components/TemplateCreate'
 import TemplateUpdate from '@/components/TemplateUpdate'
+import Generate from '@/components/Generate'
 
 
 Vue.use(Router)
@@ -57,6 +57,11 @@ var r = new Router({
           path: '/template/update',
           name: 'TemplateUpdate',
           component: TemplateUpdate
+        },
+        {
+          path: '/template/generate',
+          name: 'Generate',
+          component: Generate
         }]
     },
     {
@@ -73,13 +78,7 @@ var r = new Router({
       path: '/login',
       name: 'Login',
       component: Login
-    },
-    {
-      path: '/upload',
-      name: 'Upload',
-      component: Upload
     }
-    
   ]
 })
 

@@ -12,6 +12,12 @@
                     模板管理
                 </MenuItem>
             </MenuGroup>
+            <MenuGroup title="控制台" >
+                <MenuItem name="3" >
+                    <Icon type="md-document" />
+                    模板生成
+                </MenuItem>
+            </MenuGroup>
         </Menu>
       </div>
       <div class="list">
@@ -33,6 +39,8 @@ export default {
           app.$router.push({name:'Project'})
         }else if(e == 2){
           app.$router.push({name:'Template'})
+        }else if(e == 3){
+          app.$router.push({name:'Generate'})
         }
         
       }
