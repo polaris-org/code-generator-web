@@ -16,6 +16,8 @@ import Template from '@/components/Template'
 import TemplateCreate from '@/components/TemplateCreate'
 import TemplateUpdate from '@/components/TemplateUpdate'
 import Generate from '@/components/Generate'
+import Instructions from '@/components/Instructions'
+import Grammar from '@/components/Grammar'
 
 
 Vue.use(Router)
@@ -64,6 +66,16 @@ var r = new Router({
           path: '/template/generate',
           name: 'Generate',
           component: Generate
+        },
+        {
+          path: '/instructions',
+          name: 'Instructions',
+          component: Instructions
+        },
+        {
+          path: '/grammar',
+          name: 'Grammar',
+          component: Grammar
         }]
     },
     {

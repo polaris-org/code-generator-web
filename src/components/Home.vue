@@ -1,8 +1,14 @@
 <template>
   <div>
       <div class="menu">
-        <Menu :theme="theme3" active-name="1" mode="vertical" @on-select="jumpToProjectManager" >
-            <MenuGroup title="项目管理" >
+        <Menu :theme="theme3" active-name="3" mode="vertical" @on-select="jumpToProjectManager" >
+            <MenuGroup title="控制台" >
+                <MenuItem name="3" >
+                    <Icon type="md-document" />
+                    模板生成
+                </MenuItem>
+            </MenuGroup>
+            <MenuGroup title="模块管理" >
                 <MenuItem name="1" >
                     <Icon type="md-document" />
                     项目管理
@@ -12,10 +18,14 @@
                     模板管理
                 </MenuItem>
             </MenuGroup>
-            <MenuGroup title="控制台" >
-                <MenuItem name="3" >
+            <MenuGroup title="帮助" >
+                <MenuItem name="4" >
                     <Icon type="md-document" />
-                    模板生成
+                    使用说明
+                </MenuItem>
+                <MenuItem name="5">
+                    <Icon type="md-chatbubbles" />
+                    模板语法
                 </MenuItem>
             </MenuGroup>
         </Menu>
@@ -41,14 +51,16 @@ export default {
           app.$router.push({name:'Template'})
         }else if(e == 3){
           app.$router.push({name:'Generate'})
-        }else{
-          app.$router.push({name:'Project'})
+        }else if(e == 4){
+          app.$router.push({name:'Instructions'})
+        }else if(e == 5){
+          app.$router.push({name:'Grammar'})
         }
       }
     },
     created(){
       app = this
-      this.jumpToProjectManager(1)
+      this.jumpToProjectManager(3)
     }
 }
 </script>
