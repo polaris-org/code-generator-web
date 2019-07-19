@@ -15,14 +15,14 @@
           <Icon type="ios-lock-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
-      <FormItem inline>
-        <Button type="primary" @click="handleSubmit('formInline')"
-          >Signin</Button
+      <FormItem inline style="float:left">
+        <Button type="primary" @click="handleSubmit('formInline')"  
+          >登录</Button
         >
       </FormItem>
-      <FormItem inline>
-        <Button type="info" @click="register"
-          >Register</Button
+      <FormItem inline style="float:right">
+        <Button type="info" @click="register" 
+          >注册</Button
         >
       </FormItem>
     </Form>

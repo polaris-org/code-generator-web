@@ -4,6 +4,7 @@ import iView from 'iview'
 import ElementUI from 'element-ui'
 import 'iview/dist/styles/iview.css'
 
+
 import Home from '@/components/Home'
 import Animation from '@/components/Animation'
 import Register from '@/components/Register'
@@ -20,6 +21,7 @@ import Generate from '@/components/Generate'
 Vue.use(Router)
 Vue.use(iView)
 Vue.use(ElementUI)
+
 
 var r = new Router({
   routes: [

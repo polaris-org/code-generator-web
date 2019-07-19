@@ -2,30 +2,32 @@
   <div class="contains">
     <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
       <FormItem prop="username" inline>
-        <Input v-model="formInline.username" placeholder="Username">
+        <Input v-model="formInline.username" placeholder="email" style="width: 300px">
           <Icon type="ios-person-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
-      <FormItem prop="code"  >
-        <Input v-model="formInline.code" placeholder="code">
+      <FormItem prop="code">
+        <Input v-model="formInline.code" placeholder="code" style="width: 215px">
           <Icon type="ios-code" slot="prepend"></Icon>
         </Input>
+        
       </FormItem>
-      <FormItem  >
-        <Button type="info" @click="sendMail" class="sendMail" >{{this.count}}</Button>
+      <FormItem>
+      <Button type="info" @click="sendMail" class="sendMail" >{{this.count}}</Button>
       </FormItem>
-      <FormItem prop="password" >
+      <FormItem prop="password" style="float:left" inline>
         <Input
           v-model="formInline.password"
           placeholder="Password"
           type="text"
+          style="width: 300px"
         >
           <Icon type="ios-lock-outline" slot="prepend"></Icon>
         </Input>
       </FormItem>
-      <FormItem >
-        <Button type="primary" @click="handleSubmit('formInline')"
-          >Register</Button
+      <FormItem  >
+        <Button type="primary" @click="handleSubmit('formInline')" style="width: 300px"
+          >提交注册</Button
         >
       </FormItem>
     </Form>
