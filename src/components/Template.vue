@@ -1,7 +1,7 @@
 <template>
     <div style="width:1100px;padding:10px">
         <div style="">
-            <Select v-model="projectId" filterable style="float:left;width:300px" @on-change="selectOnChange" clearable="true" >
+            <Select v-model="projectId" filterable style="float:left;width:300px" @on-change="selectOnChange" :clearable=true >
                 <Option v-for="item in projectList" :value="item.id" :key="item.id">{{ item.name }}</Option>
             </Select>
             <Button type="info" style="float:right" @click="jumpToCreateTemplate()">创建模板</Button>
@@ -40,18 +40,13 @@
                         key: 'name'
                     },
                     {
+                        title: '描述',
+                        key: 'desc'
+                    },
+                    {
                         title: '后缀',
                         key: 'suffix'
                     },
-                    {
-                        title: '所属模板ID',
-                        key: 'projectId'
-                    },
-                    {
-                        title: '创建用户ID',
-                        key: 'userId'
-                    }
-                    ,
                     {
                         title: '创建时间',
                         key: 'createTime'

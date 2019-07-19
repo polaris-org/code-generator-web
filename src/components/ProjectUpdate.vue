@@ -8,7 +8,7 @@
             <Input v-model="formInline.desc" type="textarea" :autosize="{minRows: 5,maxRows: 10}" placeholder="Enter something..."></Input>
         </FormItem>
 
-        <FormItem prop="properties" label="扩展参数">
+        <FormItem prop="properties" label="模板参数">
             <Input v-model="formInline.properties" type="textarea" :autosize="{minRows: 5,maxRows: 10}" placeholder="Enter something..."></Input>
         </FormItem>
         <FormItem>

@@ -35,8 +35,8 @@
                         key: 'name'
                     },
                     {
-                        title: '创建用户ID',
-                        key: 'userId'
+                        title: '描述',
+                        key: 'desc'
                     }
                     ,
                     {

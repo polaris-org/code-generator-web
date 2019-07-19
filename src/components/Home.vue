@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="menu">
-        <Menu :theme="theme3" active-name="1" mode="vertical" @on-select="jumpToProjectManager">
+        <Menu :theme="theme3" active-name="1" mode="vertical" @on-select="jumpToProjectManager" >
             <MenuGroup title="项目管理" >
                 <MenuItem name="1" >
                     <Icon type="md-document" />
@@ -41,12 +41,14 @@ export default {
           app.$router.push({name:'Template'})
         }else if(e == 3){
           app.$router.push({name:'Generate'})
+        }else{
+          app.$router.push({name:'Project'})
         }
-        
       }
     },
     created(){
       app = this
+      this.jumpToProjectManager(1)
     }
 }
 </script>

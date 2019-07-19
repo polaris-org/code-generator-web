@@ -2,10 +2,10 @@
   <div id="app">
     <div class="banner" >
         <h2 style="float:left;cursor:pointer" @click="home">CodeGen</h2>
-        <div class="banner-item" icon="logo-dribbble" type="primary" v-if="!token" @click="login">Login</div>
-        <div class="banner-item" icon="ios-exit" type="warning" v-if="token" @click="exit">Exit</div>
+        <div class="banner-item" icon="logo-dribbble" type="primary" v-if="!token" @click="login">登录</div>
+        <div class="banner-item" icon="ios-exit" type="warning" v-if="token" @click="exit">退出</div>
         <div class="demo-avatar banner-item" v-if="token">
-          <Avatar style="color: #bbb;background-color: #333">{{this.nickname[0]}}</Avatar>
+          当前登录用户：{{this.nickname[0]}}
       </div>
     </div>
     <router-view class="router-view"/>
