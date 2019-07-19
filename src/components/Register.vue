@@ -84,7 +84,7 @@ export default {
         if (valid) {
           var from = this;
           axios
-            .post(app.HOST + "/user/", this.formInline)
+            .post(app.HOST + "/users", this.formInline)
             .then(function(response) {
               if (response.data.code == 200) {
                 from.$Message.success("注册成功");
@@ -112,7 +112,7 @@ export default {
           type: 1,
           email: this.formInline.username
         }
-        axios.post(app.HOST + "/mail/", mailInfo)
+        axios.post(app.HOST + "/mail", mailInfo)
           .then(function (response) {
             if(response.data.code == 200){
               form.$Message.success("发送成功");
